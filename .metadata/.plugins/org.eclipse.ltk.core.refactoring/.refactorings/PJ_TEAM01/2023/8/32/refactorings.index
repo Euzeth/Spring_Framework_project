@@ -1,0 +1,16 @@
+1691326473470	Extract interface 'MemberDao'
+1691326532399	Extract interface 'MusicSearchHistoryDao'
+1691326717537	Extract interface 'MemberService'
+1691326762514	Copy package
+1691326782826	Delete element
+1691327047886	Delete element
+1691383476986	Delete element
+1691383534510	Delete element
+1691648270395	Copy package
+1691648277986	Delete element
+1691648304838	Rename package 'com.test.app.Service'
+1691648954808	Delete element
+1691648960310	Rename compilation unit 'MemberServiceImpl.java'
+1691731500558	Delete element
+1691731508794	Delete element
+1691731550693	Delete element

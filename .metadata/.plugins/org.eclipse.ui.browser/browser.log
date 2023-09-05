@@ -1,0 +1,52 @@
+
+8월 06, 2023 22:10:09.434 NEW SESSION
+8월 06, 2023 22:10:09.435 [24408:21344:0806/221009.433:ERROR:feature_processor_state.cc(39)] Processing error occured: model WebAppInstallationPromo failed with UkmEngineDisabled, message: 
+8월 06, 2023 22:10:09.435 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 16, 2023 15:41:20.705 NEW SESSION
+8월 16, 2023 15:41:20.705 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 16, 2023 15:41:27.301 [17876:9124:0816/154127.301:ERROR:get_updates_processor.cc(265)] PostClientToServerMessage() failed during GetUpdates with error 2
+8월 16, 2023 15:43:18.179 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 16, 2023 15:46:24.209 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 17, 2023 11:35:04.223 NEW SESSION
+8월 17, 2023 11:35:04.223 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 17, 2023 15:20:34.139 NEW SESSION
+8월 17, 2023 15:20:34.139 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 17, 2023 15:28:27.934 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 17, 2023 15:34:14.322 [17312:8444:0817/153414.322:ERROR:device_event_log_impl.cc(222)] [15:34:14.321] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+8월 17, 2023 15:34:14.347 [17312:8444:0817/153414.347:ERROR:device_event_log_impl.cc(222)] [15:34:14.345] USB: usb_service_win.cc:307 SetupDiEnumDeviceInterfaces: 사용 가능한 데이터가 없습니다. (0x103)
+8월 17, 2023 15:34:16.295 [17312:8444:0817/153416.295:ERROR:device_event_log_impl.cc(222)] [15:34:16.294] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+8월 17, 2023 15:34:16.321 [17312:8444:0817/153416.320:ERROR:device_event_log_impl.cc(222)] [15:34:16.319] USB: usb_service_win.cc:307 SetupDiEnumDeviceInterfaces: 사용 가능한 데이터가 없습니다. (0x103)
+8월 17, 2023 15:37:27.322 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 17, 2023 15:38:42.780 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 23, 2023 17:55:07.223 NEW SESSION
+8월 23, 2023 17:55:07.223 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 25, 2023 11:36:10.305 NEW SESSION
+8월 25, 2023 11:36:10.305 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 25, 2023 14:11:57.793 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 25, 2023 14:14:01.928 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+8월 25, 2023 14:17:41.901 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+8월 29, 2023 15:23:59.333 NEW SESSION
+8월 29, 2023 15:23:59.333 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+9월 01, 2023 14:17:40.213 NEW SESSION
+9월 01, 2023 14:17:40.213 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:04:04.716 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:07:17.405 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:08:38.934 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:10:32.490 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:14:09.677 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:14:57.636 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:15:58.310 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:23:13.780 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:25:53.177 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:28:51.679 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:31:23.931 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:32:46.858 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:33:39.180 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+9월 01, 2023 15:34:59.109 INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
