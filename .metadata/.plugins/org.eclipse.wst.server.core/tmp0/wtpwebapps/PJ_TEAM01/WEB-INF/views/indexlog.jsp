@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -132,7 +133,7 @@
                     <div>
                         <br>
                         <a href=""><img src="resources/static/img/user.png" alt=""></a>
-                        <span>님, 환영합니다!</span>
+                        <span><sec:authentication property="principal.name" />&nbsp;님, 환영합니다!</span>
                     </div>
                     <h4></h4>
                     <form method=post action="/app/logout">

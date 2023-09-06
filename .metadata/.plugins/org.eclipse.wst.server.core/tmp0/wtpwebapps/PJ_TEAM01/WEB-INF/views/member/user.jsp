@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,29 +30,29 @@
 	<h1>내 정보를 확인 해보세요!</h1>
 	<ul>
 	<c:if test="${empty updatedDto}">
-		<li><span class="title">ID</span><hr/><span class="info">${userDto.id }</span> </li>
+		<li><span class="title">ID</span><hr/><span class="info"><sec:authentication property="principal.username" /></span> </li>
 		<br />
-		<li><span class="title">NAME</span><hr/> <span class="info">${userDto.name}</span></li>
+		<li><span class="title">NAME</span><hr/> <span class="info"><sec:authentication property="principal.name" /></span></li>
 		<br />
 		<li><span class="title">PW</span><hr/><span class="info" >****</span></li>
 		<br />
-		<li><span class="title">ADDR</span><hr/><span class="info">${userDto.addr}</span></li>
+		<li><span class="title">ADDR</span><hr/><span class="info"><sec:authentication property="principal.addr" /></span></li>
 		<br />
-		<li><span class="title">PHONE</span><hr/><span class="info">${userDto.phone}</span></li>
-		<button id="back_btn" onclick= "location.href='${pageContext.request.contextPath}/indexlog.do'">이전</button>
-		<button id="update_btn" onclick = "location.href='${pageContext.request.contextPath}/member/update.do'">정보수정</button>
+		<li><span class="title">PHONE</span><hr/><span class="info"><sec:authentication property="principal.phone" /></span></li>
+		<button id="back_btn" onclick= "location.href='${pageContext.request.contextPath}/indexlog'">이전</button>
+		<button id="update_btn" onclick = "location.href='${pageContext.request.contextPath}/member/update'">정보수정</button>
 	</c:if>
 
 	<c:if test="${not empty updatedDto}">
-		<li><span class="title">ID</span><hr/><span class="info">${updatedDto.id }</span> </li>
+		<li><span class="title">ID</span><hr/><span class="info"><sec:authentication property="principal.username" /></span> </li>
 		<br />
-		<li><span class="title">NAME</span><hr/><span class="info">${updatedDto.name}</span></li>
+		<li><span class="title">NAME</span><hr/><span class="info"><sec:authentication property="principal.name" /></span></li>
 		<br />
 		<li><span class="title">PW</span><hr/><span class="info" >****</span></li>
 		<br />
-		<li><span class="title">ADDR</span><hr/><span class="info">${updatedDto.addr}</span></li>
+		<li><span class="title">ADDR</span><hr/><span class="info"><sec:authentication property="principal.addr" /></span></li>
 		<br />
-		<li><span class="title">PHONE</span><hr/><span class="info">${updatedDto.phone}</span></li>
+		<li><span class="title">PHONE</span><hr/><span class="info"><sec:authentication property="principal.phone" /></span></li>
 		<button id="back_btn" onclick= "location.href='${pageContext.request.contextPath}/indexlog.do'">이전</button>
 		<button id="update_btn" onclick = "location.href='${pageContext.request.contextPath}/member/update.do'">정보수정</button>
 		<br />

@@ -42,7 +42,18 @@ public class MemberController {
 		log.info("GET /member/update");
 		memberService.modifyMember(dto);
 	}
-
+	
+	@PostMapping("/update")
+	public String f10(MemberDto dto, Authentication authentication) {
+		log.info("POST /member/update");
+		memberService.modifyMember(dto);
+		
+		PrincipalDetails principalDetails = (PrincipalDetails)authentication.getPrincipal();
+		principalDetails.setMember(dto);
+		
+		return "redirect:user";
+	}
+	
 	@GetMapping("/remove/{id}")
 	public void f4(@PathVariable String id) {
 		log.info("GET /member/delete");
@@ -70,28 +81,10 @@ public class MemberController {
 	public String f7(HttpSession session, Authentication authentication, Model model) {
 		System.out.println("authentication : " + authentication);
 		
-		Object principal = authentication.getPrincipal();
-		
-		if(principal instanceof PrincipalDetails) {
-			PrincipalDetails principalDetails = (PrincipalDetails) principal;
-			String id = principalDetails.getUsername();
-			String pw = principalDetails.getPassword();
-			String name = principalDetails.getName();
-			String addr = principalDetails.getAddr();
-			String phone = principalDetails.getPhone();
-			
-			MemberDto memberDto = new MemberDto();
-			memberDto.setId(id);
-			memberDto.setPw(pw);
-			memberDto.setName(name);
-			memberDto.setAddr(addr);
-			memberDto.setPhone(phone);
-			
-			model.addAttribute("MemberDto", memberDto);
-		}
 		
 		return MypageRequest(session);
-	}
+	}	
+		
 
 	@PostMapping("/mypage")
 	public String f7Post(HttpSession session) {

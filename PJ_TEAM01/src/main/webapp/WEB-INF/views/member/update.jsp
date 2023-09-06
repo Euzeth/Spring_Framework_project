@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 <div class="wrapper">
 <header>
    <div class="log-header">
-       <a href="${pageContext.request.contextPath}/indexlog" />><img class="logo" src="${pageContext.request.contextPath}/resources/static/img/로고.png" alt=""></a>
+       <a href="${pageContext.request.contextPath}/indexlog" /><img class="logo" src="${pageContext.request.contextPath}/resources/static/img/로고.png" alt=""></a>
        <ul>
           <li><a href=""><img  src="${pageContext.request.contextPath}/resources/static/img/english.png" alt="">ENGLISH</a></li>
        </ul>
@@ -28,11 +29,11 @@
 <section class="update">
     <h1>내 정보를 수정 해보세요!</h1>
    	<form action="${pageContext.request.contextPath}/member/update" method="post">
-        <span class="title">ID</span><hr/><input type="text" name="id" value="${MemberDto.id}" /><br /> 
-        <span class="title">NAME</span><hr/><input type="text" name="name" value="${MemberDto.name}" /><br /> 
-        <span class="title">PW</span><hr/><input type="password" name="pw" value="${MemberDto.pw}" /><br />
-        <span class="title">ADDR</span><hr/><input type="text" name="addr" value="${MemberDto.addr}" /><br />
-        <span class="title">PHONE</span><hr/><input type="text" name="phone" value="${MemberDto.phone}" />
+        <span class="title" >ID</span><hr/><input type="text" name="id" value="<sec:authentication property="principal.username" />" /><br /> 
+        <span class="title">NAME</span><hr/><input type="text" name="name" value="<sec:authentication property="principal.name" />" /><br /> 
+        <span class="title">PW</span><hr/><input type="password" name="pw" value="<sec:authentication property="principal.password" />" /><br />
+        <span class="title">ADDR</span><hr/><input type="text" name="addr" value="<sec:authentication property="principal.addr" />" /><br />
+        <span class="title">PHONE</span><hr/><input type="text" name="phone" value="<sec:authentication property="principal.phone" />" />
         <input id="update_btn" type="submit" value="수정하기" />
     </form>
 
