@@ -1,5 +1,8 @@
 package com.test.app.Controller.member;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +36,7 @@ public class MemberController {
 	}
 
 	@GetMapping("/selectall")
-	public void f2(MemberDto dto) {
+	public void f2() {
 		log.info("GET /member/selectall");
 	}
 
@@ -57,6 +60,12 @@ public class MemberController {
 	@GetMapping("/remove/{id}")
 	public void f4(@PathVariable String id) {
 		log.info("GET /member/delete");
+		memberService.removeMember(id);
+	}
+	
+	@PostMapping("/remove/{id}")
+	public void f5(@PathVariable String id) {
+		log.info("POST /member/delete");
 		memberService.removeMember(id);
 	}
 
@@ -109,8 +118,19 @@ public class MemberController {
 	}
 
 	@GetMapping("/member")
-	public void f9() {
+	public void f9(Model model) {
 		log.info("GET /member");
+		List<MemberDto> list = memberService.getAllMember();
+		
+		List<MemberDto> userDtoList = list.stream()
+	            .filter(dto -> "ROLE_USER".equals(dto.getRole()))
+	            .collect(Collectors.toList());
+
+		userDtoList.forEach((dto) -> {
+	        System.out.println(dto);
+	    });
+
+	    model.addAttribute("list", userDtoList);
 	}
 
 }

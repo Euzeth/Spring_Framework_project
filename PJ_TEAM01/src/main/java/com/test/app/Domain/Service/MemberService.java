@@ -23,7 +23,6 @@ public class MemberService{
 	private BCryptPasswordEncoder passworEncoder;
 	
 	public List<MemberDto> getAllMember(){
-		
 		return memberMapper.membersearchAll();
 	}
 	

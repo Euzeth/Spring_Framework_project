@@ -30,20 +30,25 @@
 	<hr/>
 	<a href="javascript:history.go(-1)">이전으로</a>
 	
-	<form action="member/delete.do" method="post">
+	<form action="${pageContext.request.contextPath}/member/remove/{id}" method="post">
     	<input type="text" name="id" placeholder="사용자 검색">
     	<button type="submit" >삭제</button>
 	</form>
 </div>
 
 
-    <button class="alluser" class="width:500px; border : 1px solid;">모든회원검색</button>
-    <div class="showBlock"></div>
+    <button class="alluser" id="showButton">모든회원검색</button>
+    <div class="selectall">
+    	<c:forEach items="${list}" var="dto">
+			<span>${dto.id}</span>&nbsp;&nbsp;<span>${dto.name}</span>
+			&nbsp;&nbsp;<span>${dto.addr}</span>&nbsp;&nbsp;<span>${dto.phone}</span><br/>
+		</c:forEach>
+    </div>
     <hr />
 
 	
-    <form action="member/search.do" method="post">
-    <div class="search_block">
+    <form action="member/search" method="post">
+    <div class="search_block" style= display="none">
     <input type="text" name="id" placeholder="검색할 id를 입력하세요">
     <button class="oneuser" type="submit" >검색</button>
     </div>
@@ -113,44 +118,21 @@
 	</script>
 	
 	<script>
-	const allsearch_btn_el = document.querySelector('.alluser');
-	allsearch_btn_el.addEventListener('click', function () {
-	  console.log('alluser clicked..');
-	  const projectPath = '${pageContext.request.contextPath}';
-	  const role = 'ROLE_USER'; // 여기에 원하는 role 정보를 넣어줌
-	  //axios
-	  axios.get("http://localhost:8080" + projectPath + "/member/allsearch.do")
-	    .then(response => {
-	      console.log('response', response);
-
-	      const showBlock_el = document.querySelector('.showBlock');
-	      
-	   	  // 기존 내용을 모두 지우기
-	      showBlock_el.innerHTML = '';
-	      
-	   	  const list = response.data;
-	      list.forEach((dto) => {
-
-	        console.log('dto', dto);
-	     
-	        const dto_el = document.createElement('div');
-	        dto_el.classList.add("item");
-
-	        dto_el.innerHTML += "<span>" + dto.id + "</span> ";
-	        dto_el.innerHTML += "<span>" + dto.role + "</span> ";
-	        dto_el.innerHTML += "<span>" + dto.name + "</span> ";
-	        dto_el.innerHTML += "<span>" + dto.addr + "</span>";
-	        dto_el.innerHTML += "<span>" + dto.phone + "</span><br/>";
-	        showBlock_el.appendChild(dto_el);
-	        
-	      });
-	    })
-	    .catch(error => {
-	      console.log("조회 실패..");
+	
+	document.addEventListener('DOMContentLoaded', function() {
+	    // 버튼 클릭 이벤트 핸들러
+	    var showButton = document.getElementById('showButton');
+	    var selectAllDiv = document.querySelector('.selectall');
+	    
+	    showButton.addEventListener('click', function() {
+	        // 현재 상태를 확인하여 토글
+	        if (selectAllDiv.style.display === 'none' || selectAllDiv.style.display === '') {
+	            selectAllDiv.style.display = 'block'; // 보이도록 함
+	        } else {
+	            selectAllDiv.style.display = 'none'; // 숨김
+	        }
 	    });
 	});
-	
-	
 	
 	</script>
 
