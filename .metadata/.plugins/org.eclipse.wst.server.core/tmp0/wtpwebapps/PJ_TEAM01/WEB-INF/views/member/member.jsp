@@ -30,8 +30,8 @@
 	<hr/>
 	<a href="javascript:history.go(-1)">이전으로</a>
 	
-	<form action="${pageContext.request.contextPath}/member/remove/{id}" method="post">
-    	<input type="text" name="id" placeholder="사용자 검색">
+	<form action="${pageContext.request.contextPath}/member/remove" method="post">
+    	<input type="text" name="id" placeholder="사용자 검색" id="searchInput">
     	<button type="submit" >삭제</button>
 	</form>
 </div>
@@ -118,6 +118,40 @@
 	</script>
 	
 	<script>
+	
+	document.addEventListener("DOMContentLoaded", function () {
+	    const form = document.querySelector('form');
+	    const searchInput = document.querySelector('#searchInput');
+
+	    form.addEventListener('submit', function (event) {
+	        event.preventDefault();
+
+	        const searchValue = searchInput.value;
+
+	        // Axios를 사용한 POST 요청
+	        axios.post('/app/member/remove', null, {
+           		params: { id: searchValue } // id 파라미터를 직접 설정
+        	})
+	            .then(function (response) {
+	                // 성공적으로 서버에서 응답을 받았을 때 처리
+	                alert('삭제가 완료되었습니다.');
+	                // 원하는 추가 동작 수행
+	            })
+	            .catch(function (error) {
+	            	if (error.response) {
+	                    console.error('서버 응답 오류:', error.response.data);
+	                } else {
+	                    console.error('요청 오류:', error.message);
+	                }
+	                // 오류가 발생했을 때 처리
+	                alert('삭제에 실패했습니다.');
+	            });
+	    });
+	});
+	
+	
+	
+	
 	
 	document.addEventListener('DOMContentLoaded', function() {
 	    // 버튼 클릭 이벤트 핸들러

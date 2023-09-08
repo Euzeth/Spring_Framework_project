@@ -30,6 +30,7 @@ public class MemberService{
 	public void addMember(MemberDto dto) {
 		String BpassworEncoder = passworEncoder.encode(dto.getPw());
 		dto.setPw(BpassworEncoder);
+		dto.setRole("ROLE_USER");
 		memberMapper.insert(dto);
 	}
 	

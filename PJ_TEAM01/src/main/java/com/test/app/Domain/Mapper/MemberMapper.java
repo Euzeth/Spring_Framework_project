@@ -20,7 +20,7 @@ public interface MemberMapper {
 	public int update(MemberDto dto);
 	
 	@Delete("delete from tbl_member where id=#{id}")
-	public String delete(String id);
+	public void delete(String id);
 	
 	@Select("select * from tbl_member")
 	public List<MemberDto> membersearchAll();

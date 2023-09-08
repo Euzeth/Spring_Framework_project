@@ -62,3 +62,6 @@ li{
   		margin-left: 240px;
         cursor: pointer;
 	}
+	.selectall {
+        display: none;
+    }

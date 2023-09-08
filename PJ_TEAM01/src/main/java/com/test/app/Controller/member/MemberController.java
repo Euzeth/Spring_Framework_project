@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.app.Config.auth.PrincipalDetails;
 import com.test.app.Domain.Dto.MemberDto;
@@ -57,14 +58,14 @@ public class MemberController {
 		return "redirect:user";
 	}
 	
-	@GetMapping("/remove/{id}")
-	public void f4(@PathVariable String id) {
+	@GetMapping("/remove")
+	public void f4(@RequestParam String id) {
 		log.info("GET /member/delete");
 		memberService.removeMember(id);
 	}
 	
-	@PostMapping("/remove/{id}")
-	public void f5(@PathVariable String id) {
+	@PostMapping("/remove")
+	public void f5(@RequestParam String id) {
 		log.info("POST /member/delete");
 		memberService.removeMember(id);
 	}
