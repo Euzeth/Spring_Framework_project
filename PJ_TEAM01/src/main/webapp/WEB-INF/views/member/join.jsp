@@ -15,24 +15,31 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-	async function checkDuplicateId() {
-		var id = document.getElementById("id_input").value;
+	document.addEventListener("DOMContentLoaded", function() {
+	    
+		async function checkDuplicateId() {
+			var id = document.getElementById("id_input").value;
 
-		try {
-			const response = await axios.get("${pageContext.request.contextPath}/checkDuplicateId.do", {
-						params : { id : id },
-			});
+			try {
+				const response = await axios.post("${pageContext.request.contextPath}/checkDuplicate", {
+					id: id
+				});
 
-			const isDuplicate = response.data;
-			if (!isDuplicate) {
-				alert("이미 사용 중인 아이디입니다.");
-			} else {
-				alert("사용 가능한 아이디입니다.");
+				const isDuplicate = response.data;
+				if (!isDuplicate) {
+					alert("이미 사용 중인 아이디입니다.");
+				} else {
+					alert("사용 가능한 아이디입니다.");
+				}
+			} catch (error) {
+				alert("중복 확인 중에 오류가 발생했습니다.");
 			}
-		} catch (error) {
-			alert("중복 확인 중에 오류가 발생했습니다.");
 		}
-	}
+		
+	    document.getElementById("idcheck_btn").addEventListener("click", checkDuplicateId);
+	});
+	
+	
 </script>
 
 </head>
@@ -105,7 +112,7 @@
 			// 서버로 AJAX 요청을 보냄
 			var xhr = new XMLHttpRequest();
 			xhr.open("GET",
-					"${pageContext.request.contextPath}/member/checkDuplicate.do?id="
+					"${pageContext.request.contextPath}/member/checkDuplicate?id="
 							+ encodeURIComponent(id), true);
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState === XMLHttpRequest.DONE) {
