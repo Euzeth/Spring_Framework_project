@@ -37,8 +37,9 @@ public class MemberController {
 	}
 
 	@GetMapping("/selectall")
-	public void f2() {
+	public void f2(Model model) {
 		log.info("GET /member/selectall");
+		
 	}
 
 	@GetMapping("/update")
@@ -65,9 +66,10 @@ public class MemberController {
 	}
 	
 	@PostMapping("/remove")
-	public void f5(@RequestParam String id) {
+	public String f5(@RequestParam String id) {
 		log.info("POST /member/delete");
 		memberService.removeMember(id);
+		return "redirect:member";
 	}
 
 	@GetMapping("/login")

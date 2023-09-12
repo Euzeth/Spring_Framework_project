@@ -45,7 +45,7 @@
 		</c:forEach>
     </div>
     <hr />
-
+	
 	
     <form action="member/search" method="post">
     <div class="search_block" style= display="none">
@@ -83,40 +83,7 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-	/* const search_btn_el=document.querySelector('.oneuser');
-	search_btn_el.addEventListener('click',function(){
-	const projectPath = '${pageContext.request.contextPath}';
-	console.log("search_btn_el click",projectPath);
-	
-	//axios
-	axios.post("http://localhost:9090" + projectPath + "/member/search.do", {
-	    id: document.querySelector('input[name="id"]').value 
-	  })
-	    .then(response => {
-	      console.log("success!", response.data);
-	      const show_block_el = document.querySelector('.oneshowBlock');
-	      
-	      const list = response.data;
 
-	      list.forEach((dto) => {
-	        console.log('dto', dto);
-	        const dto_el = document.createElement('div');
-	        dto_el.classList.add("item");
-
-	        dto_el.innerHTML += "<span>" + dto.id + "</span>";
-	        dto_el.innerHTML += "<span>" + dto.role + "</span>";
-	        dto_el.innerHTML += "<span>" + dto.name + "</span>";
-	        dto_el.innerHTML += "<span>" + dto.addr + "</span>";
-	        dto_el.innerHTML += "<span>" + dto.phone + "</span><br/>";
-	        show_block_el.appendChild(dto_el); 
-	      })
-	    })
-	    .catch(error => { console.log("fail.."); })
-	});  */ 
-	
-	</script>
-	
 	<script>
 	
 	document.addEventListener("DOMContentLoaded", function () {
@@ -135,7 +102,8 @@
 	            .then(function (response) {
 	                // 성공적으로 서버에서 응답을 받았을 때 처리
 	                alert('삭제가 완료되었습니다.');
-	                // 원하는 추가 동작 수행
+	                // 페이지 새로고침
+	                location.reload();
 	            })
 	            .catch(function (error) {
 	            	if (error.response) {
@@ -151,21 +119,24 @@
 	
 	
 	
-	
-	
 	document.addEventListener('DOMContentLoaded', function() {
 	    // 버튼 클릭 이벤트 핸들러
 	    var showButton = document.getElementById('showButton');
 	    var selectAllDiv = document.querySelector('.selectall');
 	    
-	    showButton.addEventListener('click', function() {
-	        // 현재 상태를 확인하여 토글
-	        if (selectAllDiv.style.display === 'none' || selectAllDiv.style.display === '') {
-	            selectAllDiv.style.display = 'block'; // 보이도록 함
-	        } else {
-	            selectAllDiv.style.display = 'none'; // 숨김
-	        }
-	    });
+	 	// 요소가 존재하는지 확인
+	    if (showButton && selectAllDiv) {
+	        // 버튼에 클릭 이벤트 리스너 추가
+	        showButton.addEventListener('click', function() {
+	            
+	        	// selectAllDiv의 표시를 토글
+	            if (selectAllDiv.style.display === 'none' || selectAllDiv.style.display === '') {
+	                selectAllDiv.style.display = 'block'; // 보이게 함
+	            } else {
+	                selectAllDiv.style.display = 'none'; // 숨김
+	            }
+	        });
+	    }
 	});
 	
 	</script>

@@ -15,31 +15,57 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-	document.addEventListener("DOMContentLoaded", function() {
-	    
-		async function checkDuplicateId() {
-			var id = document.getElementById("id_input").value;
+	 
+	async function checkDuplicateId() {
+	var id = document.getElementById("id_input").value;
 
-			try {
-				const response = await axios.post("${pageContext.request.contextPath}/checkDuplicate", {
-					id: id
-				});
+	try {
+		const response = await axios.get("${pageContext.request.contextPath}/checkDuplicate", {
+					params : { id : id },
+		});
 
-				const isDuplicate = response.data;
-				if (!isDuplicate) {
-					alert("이미 사용 중인 아이디입니다.");
-				} else {
-					alert("사용 가능한 아이디입니다.");
-				}
-			} catch (error) {
-				alert("중복 확인 중에 오류가 발생했습니다.");
-			}
+		const isDuplicate = response.data;
+		if (!isDuplicate) {
+			alert("이미 사용 중인 아이디입니다.");
+		} else {
+			alert("사용 가능한 아이디입니다.");
 		}
-		
-	    document.getElementById("idcheck_btn").addEventListener("click", checkDuplicateId);
-	});
+	} catch (error) {
+		alert("중복 확인 중에 오류가 발생했습니다.");
+	}
+}
+	 
 	
+	//-------------------------------------------------------------------------------------
+	 
+	 document.addEventListener("DOMContentLoaded", function() {
+		    // ...
+
+		    function checkPasswordsMatch() {
+		        var pwInput = document.getElementById("pw_input").value;
+		        var pwcInput = document.getElementById("pwc_input").value;
+		        var pwMismatchMsg = document.getElementById("pw_mismatch_msg");
+
+		        if (pwInput !== pwcInput) {
+		            pwMismatchMsg.textContent = "비밀번호가 일치하지 않습니다.";
+		            return false;
+		        } else {
+		            pwMismatchMsg.textContent = ""; // 일치하면 메시지를 지웁니다.
+		            return true;
+		        }
+		    }
+
+		    document.getElementById("join_btn").addEventListener("click", function(event) {
+		        if (!checkPasswordsMatch()) {
+		            event.preventDefault(); // 비밀번호 불일치 시 폼 제출을 막습니다.
+		        }
+		    });
+		}); 
+	 
+	 //-------------------------------------------------------------------------------------
+	 
 	
+	 
 </script>
 
 </head>
@@ -60,7 +86,7 @@
 
 		<section class="join">
 			<h1>워터멜론과 함께 하세요!</h1>
-			<form action="${pageContext.request.contextPath}/member/join" method="post">
+			<form method="post">
 				<ul>
 					<li><span>ID</span> <!-- <span id="id_check">*id중복여부표시</span> -->
 						<input id="id_input" name="id" type="text" placeholder="아이디"
@@ -71,6 +97,9 @@
 					<li><span>PW Check</span> <!-- <span id="pw_check">*pw체크표시</span> -->
 						<input id="pwc_input" name="pwc_input" type="password"
 						placeholder="비밀번호확인" title="비밀번호확인" required></li>
+					<li>
+    					<span id="pw_mismatch_msg" style="color: red;"></span>
+					</li>
 					<li><span>NAME</span> <input type="text" name="name"
 						placeholder="이름" title="이름입력" required></li>
 					<li><span>ADDRESS</span> <input id="addr_input" name="addr"
@@ -105,41 +134,6 @@
 
 		</footer>
 	</div>
-	<!-- <script>
-		function checkDuplicate() {
-			var id = document.getElementById("id_input").value;
-
-			// 서버로 AJAX 요청을 보냄
-			var xhr = new XMLHttpRequest();
-			xhr.open("GET",
-					"${pageContext.request.contextPath}/member/checkDuplicate?id="
-							+ encodeURIComponent(id), true);
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState === XMLHttpRequest.DONE) {
-					if (xhr.status === 200) {
-						// 서버로부터 응답을 받은 경우
-						var response = JSON.parse(xhr.responseText);
-						if (response.duplicate) {
-							alert("이미 사용중인 아이디입니다.");
-						} else {
-							alert("사용가능한 아이디입니다.");
-						}
-					} else {
-						// 서버로부터 응답을 받지 못한 경우
-						alert("서버와의 통신에 실패했습니다.");
-					}
-				}
-			};
-			xhr.send();
-		}
-	</script> -->
-	
-	<script>
-		document.getElementById("join_btn").addEventListener('click', function(){
-			location.href = "http://localhost:8080/app/member/login";
-		})
-	</script>
-	
 	
 </body>
 </html>
