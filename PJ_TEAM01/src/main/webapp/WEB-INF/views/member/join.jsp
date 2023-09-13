@@ -13,61 +13,6 @@
 	<%@include file="/resources/static/css/footer.css" %>
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-	 
-	async function checkDuplicateId() {
-	var id = document.getElementById("id_input").value;
-
-	try {
-		const response = await axios.get("${pageContext.request.contextPath}/checkDuplicate", {
-					params : { id : id },
-		});
-
-		const isDuplicate = response.data;
-		if (!isDuplicate) {
-			alert("이미 사용 중인 아이디입니다.");
-		} else {
-			alert("사용 가능한 아이디입니다.");
-		}
-	} catch (error) {
-		alert("중복 확인 중에 오류가 발생했습니다.");
-	}
-}
-	 
-	
-	//-------------------------------------------------------------------------------------
-	 
-	 document.addEventListener("DOMContentLoaded", function() {
-		    // ...
-
-		    function checkPasswordsMatch() {
-		        var pwInput = document.getElementById("pw_input").value;
-		        var pwcInput = document.getElementById("pwc_input").value;
-		        var pwMismatchMsg = document.getElementById("pw_mismatch_msg");
-
-		        if (pwInput !== pwcInput) {
-		            pwMismatchMsg.textContent = "비밀번호가 일치하지 않습니다.";
-		            return false;
-		        } else {
-		            pwMismatchMsg.textContent = ""; // 일치하면 메시지를 지웁니다.
-		            return true;
-		        }
-		    }
-
-		    document.getElementById("join_btn").addEventListener("click", function(event) {
-		        if (!checkPasswordsMatch()) {
-		            event.preventDefault(); // 비밀번호 불일치 시 폼 제출을 막습니다.
-		        }
-		    });
-		}); 
-	 
-	 //-------------------------------------------------------------------------------------
-	 
-	
-	 
-</script>
-
 </head>
 <body>
 
@@ -134,6 +79,64 @@
 
 		</footer>
 	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script>
+	
+		async function checkDuplicateId() {
+			var id = document.getElementById("id_input").value;
+		
+			try {
+				const response = await axios.get(`${pageContext.request.contextPath}/member/checkDuplicate`, {
+							params : { id : id },
+				});
+		
+				const isDuplicate = response.data;
+				if (!isDuplicate) {
+					alert("이미 사용 중인 아이디입니다.");
+				} else {
+					alert("사용 가능한 아이디입니다.");
+				}
+			} catch (error) {
+				alert("중복 확인 중에 오류가 발생했습니다.");
+			}
+			
+		}
+		document.getElementById("idcheck_btn").addEventListener("click", checkDuplicateId);
+		
+		
+		//-------------------------------------------------------------------------------------
+		 
+		 document.addEventListener("DOMContentLoaded", function() {
+			    // ...
+	
+			    function checkPasswordsMatch() {
+			        var pwInput = document.getElementById("pw_input").value;
+			        var pwcInput = document.getElementById("pwc_input").value;
+			        var pwMismatchMsg = document.getElementById("pw_mismatch_msg");
+	
+			        if (pwInput !== pwcInput) {
+			            pwMismatchMsg.textContent = "비밀번호가 일치하지 않습니다.";
+			            return false;
+			        } else {
+			            pwMismatchMsg.textContent = ""; // 일치하면 메시지를 지웁니다.
+			            return true;
+			        }
+			    }
+	
+			    document.getElementById("join_btn").addEventListener("click", function(event) {
+			        if (!checkPasswordsMatch()) {
+			            event.preventDefault(); // 비밀번호 불일치 시 폼 제출을 막습니다.
+			        }
+			    });
+			}); 
+		 
+		 //-------------------------------------------------------------------------------------
+		 
+		
+		 
+	</script>
+	
 	
 </body>
 </html>

@@ -6,12 +6,13 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -136,4 +137,14 @@ public class MemberController {
 	    model.addAttribute("list", userDtoList);
 	}
 
+	@GetMapping("/checkDuplicate")
+	public ResponseEntity<String> checkDuplicate(@RequestParam("id") String id) {
+	    try {
+	        boolean duplicate_id = memberService.idcheck(id);
+	        return ResponseEntity.ok(String.valueOf(duplicate_id));
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("중복 확인 중에 오류가 발생했습니다.");
+	    }
+	}
+	
 }

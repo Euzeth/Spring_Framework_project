@@ -26,35 +26,43 @@
 </header>
 <section class="member">
 
-<div>
-	<hr/>
-	<a href="javascript:history.go(-1)">이전으로</a>
-	
-	<form action="${pageContext.request.contextPath}/member/remove" method="post">
-    	<input type="text" name="id" placeholder="사용자 검색" id="searchInput">
-    	<button type="submit" >삭제</button>
-	</form>
-</div>
-
-
-    <button class="alluser" id="showButton">모든회원검색</button>
-    <div class="selectall">
-    	<c:forEach items="${list}" var="dto">
+<h1>관리자 페이지입니다.</h1>
+	<ul>
+		<li><span class="title">전체회원조회<button class="alluser" id="showButton">조회하기</button></span><hr/></li>
+		<div class="selectall">
+    	<%-- <c:forEach items="${list}" var="dto">
 			<span>${dto.id}</span>&nbsp;&nbsp;<span>${dto.name}</span>
 			&nbsp;&nbsp;<span>${dto.addr}</span>&nbsp;&nbsp;<span>${dto.phone}</span><br/>
+		</c:forEach> --%>
+    	<c:forEach items="${list}" var="dto">
+			<table>
+				<tr>
+					<td style="width:100px; height:25px;">${dto.id}</td>
+					<td style="width:100px; height:25px;">${dto.name}</td>
+					<td style="width:100px; height:25px;">${dto.addr}</td>
+					<td style="width:100px; height:25px;">${dto.phone}</td>
+				</tr>
+			</table>
 		</c:forEach>
-    </div>
-    <hr />
-	
-	
-    <form action="member/search" method="post">
-    <div class="search_block" style= display="none">
-    <input type="text" name="id" placeholder="검색할 id를 입력하세요">
-    <button class="oneuser" type="submit" >검색</button>
-    </div>
-    <div class="oneshowBlock"></div>
-    <hr />
-	</form> 
+    	
+    	</div>
+		<br />
+		<li><span class="title">회원 검색</span><hr/></li>
+		<form action="member/search" method="post">
+	    <div class="search_block" style= display="none">
+	    <input type="text" id="search_input" name="id" placeholder="검색할 id를 입력하세요">
+	    <button class="oneuser" type="submit" >검색</button>
+	    </div>
+	    <div class="oneshowBlock"></div>
+		</form> 
+		<br />
+		<li><span class="title">회원 삭제</span><hr/></li>
+		<form action="${pageContext.request.contextPath}/member/remove" method="post">
+    	<input type="text" id="remove_input" name="id" placeholder="사용자 검색">
+    	<button class="removeuser">삭제</button>
+		</form>
+		<br />
+	</ul>
 
 </section>
 <footer>
@@ -64,7 +72,7 @@
            <li><a href="">이용약관</a></li>
            <li><a href="">고객센터</a></li>
            <li><a href="">제휴/프로모션</a></li>
-           <li><a href=""> 개인정보처리방침</a></li>
+           <li style="width:170px"><a href=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개인정보처리방침</a></li>
         </ul>
     </div>
     <p></p>
@@ -87,33 +95,30 @@
 	<script>
 	
 	document.addEventListener("DOMContentLoaded", function () {
-	    const form = document.querySelector('form');
-	    const searchInput = document.querySelector('#searchInput');
+	    const form = document.querySelector('.removeuser');
+	    const searchInput = document.querySelector('#remove_input');
 
-	    form.addEventListener('submit', function (event) {
+	    form.addEventListener('click', async function (event) {
 	        event.preventDefault();
 
 	        const searchValue = searchInput.value;
 
-	        // Axios를 사용한 POST 요청
-	        axios.post('/app/member/remove', null, {
-           		params: { id: searchValue } // id 파라미터를 직접 설정
-        	})
-	            .then(function (response) {
-	                // 성공적으로 서버에서 응답을 받았을 때 처리
-	                alert('삭제가 완료되었습니다.');
-	                // 페이지 새로고침
-	                location.reload();
-	            })
-	            .catch(function (error) {
-	            	if (error.response) {
-	                    console.error('서버 응답 오류:', error.response.data);
-	                } else {
-	                    console.error('요청 오류:', error.message);
-	                }
-	                // 오류가 발생했을 때 처리
-	                alert('삭제에 실패했습니다.');
+	        try {
+	            const response = await axios.post('/app/member/remove', null, {
+	                params: { id: searchValue }
 	            });
+	            console.log('서버 응답:', response);
+	            alert('삭제가 완료되었습니다.');
+	            location.reload();
+	        } catch (error) {
+	            if (error.response) {
+	                console.error('서버 응답 오류:', error.response.data);
+	            } else {
+	                console.error('요청 오류:', error.message);
+	            }
+	            // 오류가 발생했을 때 처리
+	            alert('삭제에 실패했습니다.');
+	        }
 	    });
 	});
 	

@@ -3,9 +3,9 @@ li{
     }
 
     .member {
-        width: 410px;
+        width: 450px;
         display: block;
-        height: 400px;
+        height: 100%;
         padding-top: 50px;
         margin: 0 auto;
     }
@@ -33,13 +33,41 @@ li{
 		color: gray;
 	}
 	
-	.member>ul li .info{
-		font-size: 30px;
-		display: block;
-		margin-top: 10px;
-		text-align: center;
-	}
+	.member form #search_input, #remove_input{
+        width: 75%;
+        height: 40px;
+        box-sizing: border-box;
+        text-indent: 15px;
+        font-size: 18px;
+        color: black;
+        font-family: 'SDSamliphopangche_Basic';
+    }
 
+    .member>form input::-webkit-input-placeholder {
+        font-size: 18px;
+        color: gray;
+    }
+
+	.member .title>.alluser{
+		width: 82px;
+        height: 25px;
+        font-size: 18px;
+        cursor: pointer;
+        display: inline-block; 
+        margin: 0 5px;  
+        float: right;
+    	    
+	}
+	
+    .member form .oneuser, .removeuser{
+        width: 82px;
+        height: 40px;
+        margin-left: 15px;
+        margin-right: 0px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+	
     .member #back_btn {
         width: 60px;
         height: 35px;
@@ -62,6 +90,10 @@ li{
   		margin-left: 240px;
         cursor: pointer;
 	}
+	
 	.selectall {
         display: none;
+        font-size: 20px;
+		margin-top: 10px;
+		text-align: center;
     }

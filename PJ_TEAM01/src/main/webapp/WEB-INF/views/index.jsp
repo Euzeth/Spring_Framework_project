@@ -30,7 +30,7 @@
                 </div>
                 </form>
                 <ul>
-                    <li><a href=""
+                    <li><a href=<c:url value="/member/login" />
                             style="color:rgb(92, 115, 6); font-family: 'SDSamliphopangche_Basic'; font-size: 19px;"><img
                                 src="${pageContext.request.contextPath}/resources/static/img/add.png" alt=""> 멤버십가입</a></li>
                     <li><a href=""><img src="${pageContext.request.contextPath}/resources/static/img/english.png" alt="">ENGLISH</a></li>
