@@ -26,6 +26,10 @@ public class MemberService{
 		return memberMapper.membersearchAll();
 	}
 	
+	public MemberDto searchMember(String id){
+		return memberMapper.selectAt(id);
+	}
+	
 	@Transactional(rollbackFor = Exception.class)
 	public void addMember(MemberDto dto) {
 		String BpassworEncoder = passworEncoder.encode(dto.getPw());

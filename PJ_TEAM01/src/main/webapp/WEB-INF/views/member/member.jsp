@@ -48,13 +48,25 @@
     	</div>
 		<br />
 		<li><span class="title">회원 검색</span><hr/></li>
-		<form action="member/search" method="post">
-	    <div class="search_block" style= display="none">
+		<div class="search_block" >
+		<form action="${pageContext.request.contextPath}/member/search" method="post">
 	    <input type="text" id="search_input" name="id" placeholder="검색할 id를 입력하세요">
 	    <button class="oneuser" type="submit" >검색</button>
+	    </form>
 	    </div>
-	    <div class="oneshowBlock"></div>
-		</form> 
+	    <div class="oneshowBlock">
+	    	<c:forEach items="${member}" var="dto">
+			<table>
+				<tr>
+					<td style="width:100px; height:25px;">${dto.id}</td>
+					<td style="width:100px; height:25px;">${dto.name}</td>
+					<td style="width:100px; height:25px;">${dto.addr}</td>
+					<td style="width:100px; height:25px;">${dto.phone}</td>
+				</tr>
+			</table>
+		</c:forEach>
+	    </div>
+		 
 		<br />
 		<li><span class="title">회원 삭제</span><hr/></li>
 		<form action="${pageContext.request.contextPath}/member/remove" method="post">
@@ -143,6 +155,8 @@
 	        });
 	    }
 	});
+	
+	
 	
 	</script>
 

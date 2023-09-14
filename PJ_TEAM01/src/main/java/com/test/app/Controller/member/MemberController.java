@@ -40,7 +40,23 @@ public class MemberController {
 	@GetMapping("/selectall")
 	public void f2(Model model) {
 		log.info("GET /member/selectall");
-		
+	}
+	
+	@GetMapping("/search")
+	public String search(@RequestParam("id") String id, Model model) {
+		log.info("GET /member/search");
+		MemberDto member = memberService.searchMember(id);
+		model.addAttribute("member",member);
+		return "redirect:member";
+	}
+	
+	@PostMapping("/search")
+	public String search1(@RequestParam("id") String id, Model model) {
+	    log.info("POST /member/search");
+	    MemberDto member = memberService.searchMember(id);
+	    model.addAttribute("member", member);
+	    
+	    return "redirect:/member/member";
 	}
 
 	@GetMapping("/update")
