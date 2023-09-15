@@ -49,22 +49,18 @@
 		<br />
 		<li><span class="title">회원 검색</span><hr/></li>
 		<div class="search_block" >
-		<form action="${pageContext.request.contextPath}/member/search" method="post">
-	    <input type="text" id="search_input" name="id" placeholder="검색할 id를 입력하세요">
-	    <button class="oneuser" type="submit" >검색</button>
-	    </form>
+		    <input type="text" id="search_input" name="id" placeholder="검색할 id를 입력하세요">
+		    <button class="oneuser" onclick="searchMember()">검색</button>
 	    </div>
-	    <div class="oneshowBlock">
-	    	<c:forEach items="${member}" var="dto">
+	    <div class="oneshowBlock" id="oneshowBlock">
 			<table>
 				<tr>
-					<td style="width:100px; height:25px;">${dto.id}</td>
-					<td style="width:100px; height:25px;">${dto.name}</td>
-					<td style="width:100px; height:25px;">${dto.addr}</td>
-					<td style="width:100px; height:25px;">${dto.phone}</td>
+					<td style="width:100px; height:25px;">${member.id}</td>
+					<td style="width:100px; height:25px;">${member.name}</td>
+					<td style="width:100px; height:25px;">${member.addr}</td>
+					<td style="width:100px; height:25px;">${member.phone}</td>
 				</tr>
 			</table>
-		</c:forEach>
 	    </div>
 		 
 		<br />
@@ -134,6 +130,35 @@
 	    });
 	});
 	
+	async function searchMember() {
+        const searchInput = document.querySelector('#search_input');
+        const searchValue = searchInput.value;
+        const oneshowBlock = document.querySelector('#oneshowBlock');
+
+        try {
+            const response = await axios.get(`/member/search?id=${searchValue}`);
+            if (response.status === 200) {
+                const member = response.data;
+
+                // 검색 결과를 표시
+                oneshowBlock.innerHTML = `
+                    <table>
+                        <tr>
+                            <td style="width:100px; height:25px;">${member.id}</td>
+                            <td style="width:100px; height:25px;">${member.name}</td>
+                            <td style="width:100px; height:25px;">${member.addr}</td>
+                            <td style="width:100px; height:25px;">${member.phone}</td>
+                        </tr>
+                    </table>
+                `;
+            } else {
+                console.error('서버 응답 오류:', response.statusText);
+            }
+        } catch (error) {
+            console.error('요청 오류:', error);
+            alert('검색에 실패했습니다.');
+        }
+    }
 	
 	
 	document.addEventListener('DOMContentLoaded', function() {

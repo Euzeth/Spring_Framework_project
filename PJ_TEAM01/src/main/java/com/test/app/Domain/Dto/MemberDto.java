@@ -1,6 +1,7 @@
 package com.test.app.Domain.Dto;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,4 +18,5 @@ public class MemberDto {
 	private String phone;
 	private String role;
 	private List<String> searchHistory;
+	
 }

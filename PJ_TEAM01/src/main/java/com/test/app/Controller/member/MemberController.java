@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,20 +44,20 @@ public class MemberController {
 	}
 	
 	@GetMapping("/search")
-	public String search(@RequestParam("id") String id, Model model) {
-		log.info("GET /member/search");
-		MemberDto member = memberService.searchMember(id);
-		model.addAttribute("member",member);
-		return "redirect:member";
-	}
+	public ResponseEntity<MemberDto> search(@RequestParam("id") String id) {
+        log.info("GET /member/search");
+        MemberDto member = memberService.searchMember(id);
+        
+        if (member != null) {
+            return ResponseEntity.ok(member);
+        } else {
+            return ResponseEntity.notFound().build(); // 회원을 찾을 수 없을 때 404 응답 반환
+        }
+    }
 	
 	@PostMapping("/search")
-	public String search1(@RequestParam("id") String id, Model model) {
+	public void search1() {
 	    log.info("POST /member/search");
-	    MemberDto member = memberService.searchMember(id);
-	    model.addAttribute("member", member);
-	    
-	    return "redirect:/member/member";
 	}
 
 	@GetMapping("/update")
