@@ -1,4 +1,5 @@
- /* Section 1 전체 */
+ @charset "UTF-8";
+ /* Section 1 �쟾泥� */
  .sec_1 {
     height: 80px;
     display: flex;
@@ -6,7 +7,7 @@
     align-items: end;
 }
 
-/* Section 1 내 검색창 */
+/* Section 1 �궡 寃��깋李� */
 .QnA_search {
     height: 38px;
     width: 650px;
@@ -52,7 +53,7 @@
     display: block;
 }
 
-/* section 2 전체 */
+/* section 2 �쟾泥� */
 .sec_2 {
     height: 700px;
 }
@@ -61,7 +62,7 @@
     display: flex;
     justify-content: space-between;
 }
-/* section 2 제목 */
+/* section 2 �젣紐� */
 .sec_2>.QnA_title>#QnA {
     font-size: 40px;
     padding-top: 50px;
@@ -69,7 +70,7 @@
     color: rgb(192, 57, 43);
 }
 
-/* section 2 드랍박스 */
+/* section 2 �뱶�엻諛뺤뒪 */
 .sec_2>.QnA_title>.dropdown{
     margin: 50px 50px 0 0;
 }
@@ -110,7 +111,7 @@
     display:none;
 }    
 
-/* 드랍박스 효과 */
+/* �뱶�엻諛뺤뒪 �슚怨� */
 .wrapper>.sec_2>.QnA_title>.dropdown>.dropbtn:focus img{
     transform: rotate(180deg);
 }
@@ -128,7 +129,7 @@
     background-color: rgb(218, 218, 218);
 }
 
-/* section 2 내 QnA LIST */
+/* section 2 �궡 QnA LIST */
 table {
     margin: 20px 30px;
     display: flex;
@@ -166,7 +167,7 @@ td>a:hover {
     text-decoration: underline;
 }
 
-/* section 2 내 글쓰기 버튼 */
+/* section 2 �궡 湲��벐湲� 踰꾪듉 */
 .btn_write {
     display: flex;
     justify-content: right;
@@ -188,7 +189,7 @@ td>a:hover {
     color: black;
 }
 
-/* section 3 전체 */
+/* section 3 �쟾泥� */
 .QnA_paginate{
     display: flex;
     justify-content: center;
@@ -232,6 +233,6 @@ td>a:hover {
     margin: 0 6px;
 }
 
-.QnA_paginate>span>#현재페이지 {background-color: rgb(192, 57, 43);}
+.QnA_paginate>span>#�쁽�옱�럹�씠吏� {background-color: rgb(192, 57, 43);}
 
 .QnA_paginate>span>a:hover {text-decoration: underline;}

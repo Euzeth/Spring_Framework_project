@@ -1,4 +1,4 @@
-
+@charset "UTF-8";
 .searchresult{
     margin: 50px;
     color: rgb(192, 57, 43);
@@ -29,21 +29,21 @@ th {
 }
 td:nth-child(1),
 th:nth-child(1) {
-  width: 10%; /* 첫 번째 열의 너비 */
+  width: 10%; /* 泥� 踰덉㎏ �뿴�쓽 �꼫鍮� */
 }
 
 td:nth-child(2),
 th:nth-child(2) {
-  width: 25%; /* 두 번째 열의 너비 */
+  width: 25%; /* �몢 踰덉㎏ �뿴�쓽 �꼫鍮� */
 }
 
 td:nth-child(3),
 th:nth-child(3) {
-  width: 25%; /* 세 번째 열의 너비 */
+  width: 25%; /* �꽭 踰덉㎏ �뿴�쓽 �꼫鍮� */
 }
 
 td:nth-child(4),
 th:nth-child(4) {
-  width: 40%; /* 네 번째 열의 너비 */
+  width: 40%; /* �꽕 踰덉㎏ �뿴�쓽 �꼫鍮� */
 }
 

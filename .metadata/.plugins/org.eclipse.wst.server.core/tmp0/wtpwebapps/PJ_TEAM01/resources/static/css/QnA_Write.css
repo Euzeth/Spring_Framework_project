@@ -1,4 +1,5 @@
-/* section 2 전체 */
+@charset "UTF-8";
+/* section 2 �쟾泥� */
 .sec_2 {
     height: 670px;
 }
@@ -8,7 +9,7 @@
     justify-content: space-between;
 }
 
-/* section 2 제목 */
+/* section 2 �젣紐� */
 .sec_2>.QnA_title>#QnA {
     font-size: 40px;
     padding-top: 50px;
@@ -16,7 +17,7 @@
     color: rgb(192, 57, 43);
 }
 
-/* section 2 드랍박스 */
+/* section 2 �뱶�엻諛뺤뒪 */
 .sec_2>.QnA_title>.dropdown {
     margin: 50px 50px 0 0;
 }
@@ -57,7 +58,7 @@
     display: none;
 }
 
-/* 드랍박스 효과 */
+/* �뱶�엻諛뺤뒪 �슚怨� */
 .wrapper>.sec_2>.QnA_title>.dropdown>.dropbtn:focus img {
     transform: rotate(180deg);
 }
@@ -75,7 +76,7 @@
     background-color: rgb(218, 218, 218);
 }
 
-/* section 2 내 글쓰기 버튼 */
+/* section 2 �궡 湲��벐湲� 踰꾪듉 */
 .btn_write {
     display: flex;
     justify-content: right;
@@ -95,7 +96,7 @@
 
 
 
-/* 추가분(드롭버튼,내용텍스트) */
+/* 異붽�遺�(�뱶濡�踰꾪듉,�궡�슜�뀓�뒪�듃) */
 #writeForm input[type="text"],
 #writeForm textarea {
    width: 200%;

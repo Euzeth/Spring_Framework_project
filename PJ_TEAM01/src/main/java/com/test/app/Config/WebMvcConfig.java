@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 	@ComponentScan("/com.test.app.Domain.Dto"),
 	@ComponentScan("/com.test.app.Domain.Mapper"),
 	@ComponentScan("/com.test.app.Domain.Service"),
+	@ComponentScan("/com.test.app.RestController"),
 })
 public class WebMvcConfig implements WebMvcConfigurer{
 

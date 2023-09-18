@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* header */
 .wrapper>header {
     height:130px;
@@ -5,7 +6,7 @@
     margin-top: 20px;
 }
 
-/* 탑헤더 내 로고, 검색창, 퀵메뉴 전체 */
+/* �깙�뿤�뜑 �궡 濡쒓퀬, 寃��깋李�, �듬찓�돱 �쟾泥� */
 .wrapper>header>.top-header{
     height: 110px;
     /* border: 1px solid green; */
@@ -14,14 +15,14 @@
     align-items: center;
 }
 
-/* 탑헤더 내 로고 */
+/* �깙�뿤�뜑 �궡 濡쒓퀬 */
 .wrapper>header>.top-header>.logo{
     margin-top: 0;
     width: 240px;
     height: 120px;
 }
 
-/* 탑헤더 내 검색창 */
+/* �깙�뿤�뜑 �궡 寃��깋李� */
 .wrapper>header>.top-header>form .search_box{
     height: 38px;
     width: 500px;
@@ -67,7 +68,7 @@
     display: block;
 }
 
-/* 헤더 내 퀵메뉴 */
+/* �뿤�뜑 �궡 �듬찓�돱 */
 .wrapper>header>.top-header>ul {
     /* border: 1px solid red; */
     display: flex;
@@ -99,13 +100,13 @@
     left: -5px;
 }
 
-/* nav부분 STYLE */
+/* nav遺�遺� STYLE */
 .wrapper>nav>.navi{
     display: flex;
     justify-content: space-between;
 }
 
-/* 왼쪽 nav one-depth */
+/* �쇊履� nav one-depth */
 .wrapper>nav>.navi>.Menu_left>.one--depth {
     width: 100%;
     height: 60px;
@@ -125,7 +126,7 @@
 
 }
 
-/* 왼쪽 nav two-depth */
+/* �쇊履� nav two-depth */
 .wrapper>nav>.navi>.Menu_left>.one--depth>li>.two--depth {
     position: absolute;
     display: none;
@@ -158,7 +159,7 @@
     color: rgb(192, 57, 43);
 }
 
-/* 오른쪽 nav one-depth */
+/* �삤瑜몄そ nav one-depth */
 .wrapper>nav>.navi>.Menu_right>.one--depth {
     width: 100%;
     height: 60px;
@@ -177,7 +178,7 @@
     text-align: right;
 }
 
-/* 오른쪽 nav two-depth */
+/* �삤瑜몄そ nav two-depth */
 .wrapper>nav>.navi>.Menu_right>.one--depth>li>.two--depth {
     position: absolute;
     display: none;
