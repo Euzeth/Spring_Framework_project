@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.javassist.compiler.ast.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,41 +33,39 @@ public class MemberController {
 	MemberService memberService;
 
 	@GetMapping("/add")
-	public void f1(MemberDto dto) {
+	public void add(MemberDto dto) {
 		log.info("GET /member/add");
 		memberService.addMember(dto);
 	}
 
 	@GetMapping("/selectall")
-	public void f2(Model model) {
+	public void selectall(Model model) {
 		log.info("GET /member/selectall");
 	}
 	
 	@GetMapping("/search")
-	public ResponseEntity<MemberDto> search(@RequestParam("id") String id) {
+	public void search(@RequestParam String id) {
         log.info("GET /member/search");
-        MemberDto member = memberService.searchMember(id);
+        memberService.searchMember(id);
         
-        if (member != null) {
-            return ResponseEntity.ok(member);
-        } else {
-            return ResponseEntity.notFound().build(); // 회원을 찾을 수 없을 때 404 응답 반환
-        }
     }
 	
 	@PostMapping("/search")
-	public void search1() {
-	    log.info("POST /member/search");
+	public String search_post(@RequestParam String id, Model model) {
+		log.info("POST /member/search");
+		List<Member> searchResults = (List<Member>) memberService.searchMember(id);
+		model.addAttribute("searchResults", searchResults);
+		return "redirect:member";
 	}
 
 	@GetMapping("/update")
-	public void f3(MemberDto dto) {
+	public void update(MemberDto dto) {
 		log.info("GET /member/update");
 		memberService.modifyMember(dto);
 	}
 	
 	@PostMapping("/update")
-	public String f10(MemberDto dto, Authentication authentication) {
+	public String update(MemberDto dto, Authentication authentication) {
 		log.info("POST /member/update");
 		memberService.modifyMember(dto);
 		
@@ -78,37 +76,37 @@ public class MemberController {
 	}
 	
 	@GetMapping("/remove")
-	public void f4(@RequestParam String id) {
+	public void remove(@RequestParam String id) {
 		log.info("GET /member/delete");
 		memberService.removeMember(id);
 	}
 	
 	@PostMapping("/remove")
-	public String f5(@RequestParam String id) {
+	public String remove1(@RequestParam String id) {
 		log.info("POST /member/delete");
 		memberService.removeMember(id);
 		return "redirect:member";
 	}
 
 	@GetMapping("/login")
-	public void f5() {
+	public void login() {
 		log.info("GET /login");
 	}
 
 	@GetMapping("/join")
-	public void f6() {
+	public void join() {
 		log.info("GET /join");
 	}
 
 	@PostMapping("/join")
-	public String f6(@ModelAttribute MemberDto dto) {
+	public String join(@ModelAttribute MemberDto dto) {
 		memberService.addMember(dto);
 		log.info("POST /join");
 		return "/member/login";
 	}
 
 	@GetMapping("/mypage")
-	public String f7(HttpSession session, Authentication authentication, Model model) {
+	public String mypage(HttpSession session, Authentication authentication, Model model) {
 		System.out.println("authentication : " + authentication);
 		
 		
@@ -117,7 +115,7 @@ public class MemberController {
 		
 
 	@PostMapping("/mypage")
-	public String f7Post(HttpSession session) {
+	public String mypage(HttpSession session) {
 		return MypageRequest(session);
 	}
 
@@ -134,12 +132,12 @@ public class MemberController {
 	}
 
 	@GetMapping("/user")
-	public void f8() {
+	public void user() {
 		log.info("GET /user");
 	}
 
 	@GetMapping("/member")
-	public void f9(Model model) {
+	public void member(Model model) {
 		log.info("GET /member");
 		List<MemberDto> list = memberService.getAllMember();
 		

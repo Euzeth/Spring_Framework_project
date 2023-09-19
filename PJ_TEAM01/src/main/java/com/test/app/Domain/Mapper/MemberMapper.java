@@ -27,7 +27,7 @@ public interface MemberMapper {
 	public List<MemberDto> membersearchAll();
 	
 	@Select("select * from tbl_member where id=#{id}")
-	public MemberDto selectAt(@Param("id") String id);
+	public MemberDto selectAt(String id);
 	
 	
 	

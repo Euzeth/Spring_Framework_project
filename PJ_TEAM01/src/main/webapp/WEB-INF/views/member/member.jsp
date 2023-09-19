@@ -50,16 +50,27 @@
 		<li><span class="title">회원 검색</span><hr/></li>
 		<div class="search_block" >
 		    <input type="text" id="search_input" name="id" placeholder="검색할 id를 입력하세요">
-		    <button class="oneuser" onclick="searchMember()">검색</button>
+		    <button class="oneuser">검색</button>
 	    </div>
-	    <div class="oneshowBlock" id="oneshowBlock">
-			<table>
-				<tr>
-					<td style="width:100px; height:25px;">${member.id}</td>
-					<td style="width:100px; height:25px;">${member.name}</td>
-					<td style="width:100px; height:25px;">${member.addr}</td>
-					<td style="width:100px; height:25px;">${member.phone}</td>
-				</tr>
+	    <div class="oneshowBlock" id="oneshowblock">
+	    	<table>
+			    <thead>
+			        <tr>
+			            <th>이름</th>
+			            <th>이메일</th>
+			            <!-- 추가 필드들에 대한 헤더를 여기에 추가 -->
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <!-- 검색 결과 반복 -->
+			        <th:each="member : ${searchResults}">
+			            <tr>
+			                <td>${member.name}</td>
+			                <td>${member.email}</td>
+			                <!-- 추가 필드들을 여기에 추가 -->
+			            </tr>
+			        </th:each>
+			    </tbody>
 			</table>
 	    </div>
 		 
@@ -130,35 +141,51 @@
 	    });
 	});
 	
-	async function searchMember() {
-        const searchInput = document.querySelector('#search_input');
-        const searchValue = searchInput.value;
-        const oneshowBlock = document.querySelector('#oneshowBlock');
+	document.addEventListener('DOMContentLoaded', function() {
+		const search = document.querySelector('.oneuser');
+	    const searchInput = document.querySelector('#search_input');
+		
+	    search.addEventListener('click', function(event){
+	    	event.preventDefault();
+	    	
+	    	const searchValue = searchInput.value;
+	    	
+	    	try {
+	            const response = axios.post('/app/member/search', null, {
+	                params: { id: searchValue }
+	            });
+	            console.log('서버 응답:', response);
+		        response.then(function(response) {
+		            const searchResults = response.data; // 검색 결과 데이터
+		            const oneshowblock = document.querySelector('#oneshowblock');
+		            oneshowblock.innerHTML = ''; // 이전 결과를 지우고 새로운 결과를 추가하기 위해 초기화
 
-        try {
-            const response = await axios.get(`/member/search?id=${searchValue}`);
-            if (response.status === 200) {
-                const member = response.data;
+		            // 검색 결과를 표로 나타내는 HTML 문자열 생성
+		            let html = '<table>';
+		            html += '<thead><tr><th>이름</th><th>이메일</th></tr></thead>';
+		            html += '<tbody>';
+		            searchResults.forEach(function(member) {
+		                html += '<tr><td>' + member.name + '</td><td>' + member.email + '</td></tr>';
+		            });
+		            html += '</tbody></table>';
 
-                // 검색 결과를 표시
-                oneshowBlock.innerHTML = `
-                    <table>
-                        <tr>
-                            <td style="width:100px; height:25px;">${member.id}</td>
-                            <td style="width:100px; height:25px;">${member.name}</td>
-                            <td style="width:100px; height:25px;">${member.addr}</td>
-                            <td style="width:100px; height:25px;">${member.phone}</td>
-                        </tr>
-                    </table>
-                `;
-            } else {
-                console.error('서버 응답 오류:', response.statusText);
-            }
-        } catch (error) {
-            console.error('요청 오류:', error);
-            alert('검색에 실패했습니다.');
-        }
-    }
+		            // oneshowblock에 HTML 추가
+		            oneshowblock.innerHTML = html;
+		            
+	           		alert('회원검색 완료.');
+	        		})
+		        } catch (error) {
+	            if (error.response) {
+	                console.error('서버 응답 오류:', error.response.data);
+	            } else {
+	                console.error('요청 오류:', error.message);
+	            }
+	            // 오류가 발생했을 때 처리
+	            alert('회원검색 실패.');
+	        }
+	    })
+
+	});
 	
 	
 	document.addEventListener('DOMContentLoaded', function() {
